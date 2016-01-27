@@ -16,7 +16,7 @@ class TomlHighlighter : SyntaxHighlighterBase() {
 
 
     override fun getTokenHighlights(tokenType: IElementType?): Array<out TextAttributesKey> =
-        pack(tokenMap.getRaw(tokenType))
+        pack(tokenType?.let { tokenMap[it] })
 
 
     private val tokenMap: Map<IElementType, TextAttributesKey> = makeTokenMap()
@@ -26,23 +26,22 @@ class TomlHighlighter : SyntaxHighlighterBase() {
 private fun makeTokenMap(): Map<IElementType, TextAttributesKey> {
     val result = THashMap<IElementType, TextAttributesKey>()
     result[TomlTypes.KEY] =
-            TextAttributesKey.createTextAttributesKey("TOML_KEY", DefaultLanguageHighlighterColors.KEYWORD)
+        TextAttributesKey.createTextAttributesKey("TOML_KEY", DefaultLanguageHighlighterColors.KEYWORD)
 
     result[TomlTypes.COMMENT] =
-            TextAttributesKey.createTextAttributesKey("TOML_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
+        TextAttributesKey.createTextAttributesKey("TOML_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
 
     result[TomlTypes.STRING] =
-            TextAttributesKey.createTextAttributesKey("TOML_STRING", DefaultLanguageHighlighterColors.STRING)
+        TextAttributesKey.createTextAttributesKey("TOML_STRING", DefaultLanguageHighlighterColors.STRING)
 
     result[TomlTypes.NUMBER] =
-            TextAttributesKey.createTextAttributesKey("TOML_NUMBER", DefaultLanguageHighlighterColors.NUMBER)
+        TextAttributesKey.createTextAttributesKey("TOML_NUMBER", DefaultLanguageHighlighterColors.NUMBER)
 
     result[TomlTypes.BOOLEAN] =
-            TextAttributesKey.createTextAttributesKey("TOML_BOOLEAN", DefaultLanguageHighlighterColors.PREDEFINED_SYMBOL)
+        TextAttributesKey.createTextAttributesKey("TOML_BOOLEAN", DefaultLanguageHighlighterColors.PREDEFINED_SYMBOL)
 
     result[TomlTypes.DATE] =
-            TextAttributesKey.createTextAttributesKey("TOML_DATE", DefaultLanguageHighlighterColors.PREDEFINED_SYMBOL)
+        TextAttributesKey.createTextAttributesKey("TOML_DATE", DefaultLanguageHighlighterColors.PREDEFINED_SYMBOL)
 
     return result;
 }
-
