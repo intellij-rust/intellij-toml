@@ -20,7 +20,6 @@ if (rootProject == project) {
 
 }
 
-apply plugin: 'org.jetbrains.intellij'
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,12 +51,14 @@ test {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 intellij {
-  pluginName 'intellij-toml'
 
-  version ideaVersion
-  downloadSources Boolean.valueOf(downloadIdeaSources)
+    pluginName 'intellij-toml'
 
-  sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
+    version ideaVersion
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+
+    sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -164,6 +165,6 @@ dependencies {
 // Misc
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-version = "${version}.$buildNumber"
-
 jar.archiveName = "toml.jar"
+
+version = "${version}.$buildNumber"
