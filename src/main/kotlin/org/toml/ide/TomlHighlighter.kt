@@ -15,8 +15,8 @@ class TomlHighlighter : SyntaxHighlighterBase() {
         TomlLexer()
 
 
-    override fun getTokenHighlights(tokenType: IElementType?): Array<out TextAttributesKey> =
-        pack(tokenMap.getRaw(tokenType))
+    override fun getTokenHighlights(tokenType: IElementType?): Array<out TextAttributesKey> = 
+        pack(tokenMap.get(tokenType))
 
 
     private val tokenMap: Map<IElementType, TextAttributesKey> = makeTokenMap()
