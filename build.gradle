@@ -5,18 +5,18 @@
 
 if (rootProject == project) {
 
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
+    buildscript {
+        repositories {
+            mavenCentral()
+            maven {
+                url "https://plugins.gradle.org/m2/"
+            }
+        }
+
+        dependencies {
+            classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.39'
         }
     }
-
-    dependencies {
-        classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.36'
-    }
-}
 
 }
 
@@ -51,20 +51,20 @@ test {
 // IntelliJ plugin configuration
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (rootProject == project) {
+intellij {
+  pluginName 'intellij-toml'
 
-  intellij {
-      pluginName 'IntelliJ Toml'
+  version ideaVersion
+  downloadSources Boolean.valueOf(downloadIdeaSources)
 
-      version ideaVersion
-      downloadSources Boolean.valueOf(downloadIdeaSources)
-
-      sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
-  }
+  sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // IDE support
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+if (rootProject == project) {
 
   apply plugin: 'idea'
 
@@ -157,8 +157,6 @@ dependencies {
 
     testCompile "junit:junit:4.+"
     testCompile 'org.assertj:assertj-core:3.2.0'
-
-    //compile project (':')
 }
 
 
