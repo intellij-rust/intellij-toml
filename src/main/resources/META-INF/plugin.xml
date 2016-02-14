@@ -3,7 +3,7 @@
     <name>Toml</name>
     <version>0.0.1</version>
 
-    <vendor url="https://github.com/intellij-rust/intellij-rust"/>
+    <vendor url="https://github.com/intellij-rust/intellij-toml"/>
 
     <description><![CDATA[
       TOML language support
