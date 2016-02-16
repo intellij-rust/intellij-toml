@@ -3,24 +3,22 @@
 // Buildscript
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (rootProject == project) {
-
-    buildscript {
-        repositories {
-            mavenCentral()
-            maven {
-                url "https://plugins.gradle.org/m2/"
-            }
-        }
-
-        dependencies {
-            classpath 'gradle.plugin.org.jetbrains:gradle-intellij-plugin:0.0.39'
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
         }
     }
 
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
 }
 
-
+plugins {
+    id 'org.jetbrains.intellij' version "0.0.40"
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Projects
@@ -72,21 +70,17 @@ intellij {
 // IDE support
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (rootProject == project) {
+apply plugin: 'idea'
 
-  apply plugin: 'idea'
+idea {
+    project {
+        jdkName         = javaVersion
+        languageLevel   = javaVersion
+    }
 
-  idea {
-      project {
-          jdkName         = javaVersion
-          languageLevel   = javaVersion
-      }
-
-      module {
-          generatedSourceDirs += file('gen')
-      }
-  }
-
+    module {
+        generatedSourceDirs += file('gen')
+    }
 }
 
 
@@ -145,7 +139,7 @@ task generateParsers {
     dependsOn generateTomlPsiAndParser
 }
 
-apply from: "../shared.gradle"
+apply from: "shared.gradle"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
