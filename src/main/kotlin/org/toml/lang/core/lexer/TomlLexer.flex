@@ -23,10 +23,20 @@ LINE_WS=[\ \t\f]
 WHITE_SPACE=({LINE_WS}|{EOL})+
 
 COMMENT=#[^\n\r]*
+ANY_ESCAPE_SEQUENCE = \\[^]
 
-MULTILINE_STRING=(\"\"\"([^\"]|\\[0tnr\\\"])*(\"\"\"|\\)?)
-STRING=(\"([^\\\r\n\"]|\\[0tnr\\\"])*[\"\\]?)
-MULTILINE_STRING_SQ=('''([\r\n]|.)*(''')?)
+THREE_DQ = (\"\"\")
+ONE_TWO_DQ = (\"[^\"]) | (\"\\[^]) | (\"\"[^\"]) | (\"\"\\[^])
+DQ_STRING_CHAR = [^\"] | {ANY_ESCAPE_SEQUENCE} | {ONE_TWO_DQ}
+MULTILINE_STRING = {THREE_DQ} {DQ_STRING_CHAR}* {THREE_DQ}?
+
+STRING=(\"[^\r\n\"]*\"?)
+
+THREE_SQ = (\'\'\')
+ONE_TWO_SQ = ('[^']) | ('\\[^]) | (''[^']) | (''\\[^])
+SQ_STRING_CHAR = [^\\'] | {ANY_ESCAPE_SEQUENCE} | {ONE_TWO_SQ}
+MULTILINE_STRING_SQ = {THREE_SQ} {SQ_STRING_CHAR}* {THREE_SQ}?
+
 STRING_SQ=('[^\r\n\']*'?)
 
 NUMBER=[-+]?[1-9](_?[0-9])*(\.[0-9](_?[0-9])*)?([eE][-+]?[1-9](_?[0-9])*)?
