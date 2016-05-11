@@ -4,8 +4,8 @@ import com.intellij.icons.AllIcons
 import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.vfs.VirtualFile
 
-public object TomlFileType : LanguageFileType(TomlLanguage) {
-    public object DEFAULTS {
+object TomlFileType : LanguageFileType(TomlLanguage) {
+    object DEFAULTS {
         val EXTENSION   = "toml";
         val DESCRIPTION = "TOML file";
     }

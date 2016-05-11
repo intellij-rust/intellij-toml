@@ -16,12 +16,10 @@ import org.toml.lang.core.lexer.TomlLexer
 import org.toml.lang.core.psi.TomlFile
 import org.toml.lang.core.psi.TomlTypes
 
-public class TomlParserDefinition : ParserDefinition {
-    override fun createParser(project: Project?): PsiParser =
-        TomlParser()
+class TomlParserDefinition : ParserDefinition {
+    override fun createParser(project: Project?): PsiParser = TomlParser()
 
-    override fun createFile(viewProvider: FileViewProvider): PsiFile =
-        TomlFile(viewProvider)
+    override fun createFile(viewProvider: FileViewProvider): PsiFile = TomlFile(viewProvider)
 
     override fun spaceExistanceTypeBetweenTokens(left: ASTNode?, right: ASTNode?): ParserDefinition.SpaceRequirements? {
         return ParserDefinition.SpaceRequirements.MAY
@@ -30,21 +28,15 @@ public class TomlParserDefinition : ParserDefinition {
     override fun getStringLiteralElements(): TokenSet =
             TokenSet.EMPTY;
 
-    override fun getWhitespaceTokens(): TokenSet =
-            WHITE_SPACES
+    override fun getWhitespaceTokens(): TokenSet = WHITE_SPACES
 
+    override fun getCommentTokens(): TokenSet = COMMENTS
 
-    override fun getCommentTokens(): TokenSet =
-            COMMENTS
+    override fun getFileNodeType(): IFileElementType? = FILE
 
-    override fun getFileNodeType(): IFileElementType? =
-            FILE
+    override fun createLexer(project: Project?): Lexer = TomlLexer()
 
-    override fun createLexer(project: Project?): Lexer =
-        TomlLexer()
-
-    override fun createElement(node: ASTNode?): PsiElement =
-            TomlTypes.Factory.createElement(node)
+    override fun createElement(node: ASTNode?): PsiElement = TomlTypes.Factory.createElement(node)
 
     companion object {
         val FILE: IFileElementType = IFileElementType(TomlLanguage)

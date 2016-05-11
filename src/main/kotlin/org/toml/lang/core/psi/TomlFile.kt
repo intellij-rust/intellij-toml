@@ -7,9 +7,7 @@ import org.toml.lang.TomlFileType
 import org.toml.lang.TomlLanguage
 
 class TomlFile(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, TomlLanguage) {
-    override fun getFileType(): FileType =
-        TomlFileType
+    override fun getFileType(): FileType = TomlFileType
 
-    override fun toString(): String =
-            "TOML File"
+    override fun toString(): String = "TOML File"
 }
