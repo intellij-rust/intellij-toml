@@ -1,6 +1,7 @@
 package org.toml.lang.core.parser
 
 import com.intellij.lang.ASTNode
+import com.intellij.lang.LanguageUtil
 import com.intellij.lang.ParserDefinition
 import com.intellij.lang.PsiParser
 import com.intellij.lexer.Lexer
@@ -21,12 +22,10 @@ class TomlParserDefinition : ParserDefinition {
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile = TomlFile(viewProvider)
 
-    override fun spaceExistanceTypeBetweenTokens(left: ASTNode?, right: ASTNode?): ParserDefinition.SpaceRequirements? {
-        return ParserDefinition.SpaceRequirements.MAY
-    }
+    override fun spaceExistanceTypeBetweenTokens(left: ASTNode?, right: ASTNode?): ParserDefinition.SpaceRequirements? =
+        LanguageUtil.canStickTokensTogetherByLexer(left, right, TomlLexer())
 
-    override fun getStringLiteralElements(): TokenSet =
-            TokenSet.EMPTY;
+    override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
     override fun getWhitespaceTokens(): TokenSet = WHITE_SPACES
 
