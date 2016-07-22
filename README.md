@@ -1,4 +1,4 @@
-# [TOML](https://github.com/toml-lang/toml) langauge support for IntelliJ IDEA based IDEs
+# [TOML](https://github.com/toml-lang/toml) language support for IntelliJ IDEA based IDEs
 
 The plugin provides nothing but syntax highlighting at the moment.
 
