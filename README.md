@@ -1,5 +1,12 @@
 # [TOML](https://github.com/toml-lang/toml) language support for IntelliJ IDEA based IDEs
 
+
+| Build Status |                                                                                                                            |
+|--------------|----------------------------------------------------------------------------------------------------------------------------|
+| Travis       | [![Travis Build Status][travis-build-status-svg]][travis-build-status]                                                     |
+
+## Status
+
 The plugin provides nothing but syntax highlighting at the moment.
 
 ## Installation
@@ -32,3 +39,7 @@ Current high-volatility state entails no support just yet, so be patient, please
 ## Contributing
 
 See [Contributing](https://github.com/intellij-rust/intellij-rust/blob/master/CONTRIBUTING.md) in the IntellJ-Rust plugin.
+
+<!-- Badges -->
+[travis-build-status]: https://travis-ci.org/intellij-rust/intellij-toml
+[travis-build-status-svg]: https://img.shields.io/travis/intellij-rust/intellij-toml.svg?style=flat-square
